@@ -1,0 +1,338 @@
+/* Estilo global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #1a665c;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    padding: 1rem;
+}
+
+/* Contenedor flex para alinear la calculadora y el formulario */
+.container {
+    display: flex;
+    justify-content: center; /* Centra los elementos dentro del contenedor */
+    align-items: stretch;    /* Hace que ambos elementos tengan la misma altura */
+    gap: 30px;               /* Espacio entre la calculadora y el formulario */
+    width: 100%;             /* Se asegura de que el contenedor ocupe todo el espacio disponible */
+    max-width: 1300px;       /* Establece un máximo para que no se estire demasiado */
+    margin-top: 3rem;        /* Añade margen superior para separarlo del nav */
+}
+
+/* Calculadora (sin cambios) */
+.calculadora {
+    background-color: #cdcdce;
+    color: white;
+    width: 350px;  /* Mantener el tamaño de la calculadora */
+    max-width: 100%;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .5rem;
+    height: 100%; /* Igualar la altura */
+}
+
+.pantalla {
+    grid-column: 1 / -1;
+    background-color: #1a665c;
+    padding: 1.5rem;
+    font-size: 2rem;
+    text-align: right;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    font-weight: 600;
+}
+
+.btn {
+    background-color:#1a665c;
+    color: white;
+    border: 0;
+    padding: 1.5rem .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #093128;
+}
+
+#cero {
+    grid-column: span 2;
+}
+
+#igual {
+    grid-row: span 2;
+    background-color:  #c22030;
+}
+
+#igual:hover {
+    background-color: #a70919;
+}
+
+/* Estilo para el formulario de minimarket */
+.minimarket-container {
+    background-color: #fff;
+    padding: 1.5rem; /* Ajustamos el padding para hacer el formulario más compacto */
+    border-radius: 1rem;
+    width: 1000px; /* Aumentar el ancho del formulario */
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 500px; /* Altura fija para el formulario, evita que se estire */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+    overflow: hidden; /* No permite que el formulario se expanda más allá de su tamaño */
+}
+
+/* Contenedor de productos con scroll si hay demasiados */
+#lista-productos {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los productos se acomoden en varias filas */
+    gap: 10px;       /* Espacio entre los productos */
+    overflow-y: auto; /* Añade barra de desplazamiento si es necesario */
+    max-height: 250px; /* Limita la altura del contenedor para productos */
+    margin-top: 15px; /* Espacio entre el título de los productos y la lista */
+}
+
+/* Producto individual */
+.producto {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    width: calc(100% - 10px); /* Muestra un producto por fila */
+    box-sizing: border-box;
+    text-align: center;
+    position: relative; /* Necesario para posicionar la "X" en la parte superior derecha */
+}
+
+/* Posición y estilo para el botón "X" */
+.eliminar {
+    position: absolute; /* Posicionarlo en la esquina superior derecha */
+    top: 0; /* En la parte superior */
+    right: 0; /* En la esquina derecha */
+    background-color: transparent; /* Sin fondo */
+    color: red; /* Color rojo */
+    border: none; /* Sin borde */
+    font-size: 18px; /* Tamaño de la letra */
+    cursor: pointer; /* Cursor tipo puntero */
+    padding: 5px; /* Espaciado alrededor de la "X" */
+}
+
+.producto {
+    position: relative; /* Asegura que el botón "X" esté dentro del producto */
+    margin-bottom: 10px; /* Espacio entre productos */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+/* Limita la altura y añade scroll vertical si hay más productos */
+#lista-productos::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lista-productos::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#lista-productos::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Estilo para los productos */
+.producto p {
+    margin: 0;
+}
+
+/* Contenedor de total y monto */
+.total-container {
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+}
+
+#monto {
+    margin-top: 1rem;
+}
+
+/* Estilo para el botón de procesar compra */
+.btn-calculate {
+    
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 15.5px; /* Tamaño de texto más grande */
+    font-weight: normal; /* Asegura que no esté en negrita */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+
+   
+}
+
+#procesar{
+    margin-top: 1rem; /* Añade un margen superior */
+    background-color:  #2a896b;
+}
+
+#procesar:hover{
+    background-color: #179c82;
+
+}
+
+/* Estilo para el menú de navegación */
+nav {
+    position: absolute;  /* Coloca el menú fuera del flujo normal del documento */
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: #2e7a78;  /* Fondo oscuro, combinando con el tema */
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Sombra sutil para dar profundidad */
+    z-index: 1000;  /* Asegura que el menú esté sobre otros elementos */
+}
+
+nav ul {
+    list-style: none;  /* Elimina los puntos de la lista */
+    display: flex;     /* Muestra los elementos de forma horizontal */
+    justify-content: center;  /* Centra los elementos */
+    gap: 30px;         /* Espacio entre los elementos */
+    margin: 0;
+}
+
+nav li {
+    position: relative; /* Necesario para el submenú (si lo agregas más tarde) */
+}
+
+nav a {
+    color: #f1f1f1;  /* Color blanco suave para los enlaces */
+    text-decoration: none;  /* Elimina los subrayados */
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: block;  /* Hace que el enlace sea todo un área clickeable */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #46cb9f;  /* Verde suave al pasar el mouse */
+    color: white;               /* Mantiene el texto en blanco */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+nav a:active {
+    background-color: #45a049;  /* Color ligeramente más oscuro al hacer clic */
+    transform: translateY(1px);  /* Simula una ligera presión al hacer clic */
+}
+
+/* Agrega un efecto de transición suave a todo el menú */
+nav ul li a {
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+
+#generar-reporte{
+    background-color: #c22030;
+}
+
+#generar-reporte:hover{
+    background-color: #c64451;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 95%;
+        margin-top: 6rem; /* Reduce el margen superior para pantallas grandes */
+    }
+
+    nav {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: #2e7a78;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .container {
+        margin-top: 180px; /* Ajuste para no ser tan grande */
+    }
+}
+
+@media screen and (max-width: 500px) {
+    body {
+        padding: 1rem; /* Aumentamos el padding */
+    }
+
+    .container {
+        gap: 20px;
+    }
+
+    .container {
+        margin-top: 120px;
+    }
+
+    .calculadora, .minimarket-container {
+        margin-top: 100px;
+    }
+
+    nav {
+        position: fixed;
+        width: 100%;
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0;
+        box-shadow: none;
+        z-index: 1000;
+    }
+
+    .producto {
+        width: 100%; /* Asegura que el producto ocupe todo el ancho disponible */
+    }
+
+    .eliminar {
+        font-size: 16px; /* Ajuste para una mejor visibilidad */
+    }
+
+    .minimarket-container {
+        padding: 1rem;
+    }
+}
+

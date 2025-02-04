@@ -1,0 +1,502 @@
+/* Estilo global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #1a665c;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    padding: 1rem;
+    min-height: 100vh;       /* Asegura que el body ocupe toda la altura */
+    flex-direction: column;  /* Evita que el modal se desplace a los lados */
+}
+
+/* Estilo para el modal de login */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;           /* Cambié de block a flex */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    flex-direction: column;
+    
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+}
+
+/* Estilo para los labels */
+.modal label {
+    display: block;           /* Hace que el label ocupe todo el ancho disponible */
+    text-align: left;         /* Alinea el texto a la izquierda */
+    font-size: 16px;          /* Tamaño de fuente */
+    font-weight: 600;         /* Peso de la fuente */
+    color: #3f3c3c;              /* Color oscuro para los labels */
+    margin-bottom: 5px;       /* Espacio debajo del label */
+    margin-left: 2px;        /* Alineación a la izquierda */
+}
+
+/* Estilo para el placeholder */
+.modal input::placeholder {
+    font-size: 16px; /* Tamaño de letra del placeholder más grande */
+    color: #575656;     /* Color del texto en el placeholder */
+    
+}
+.modal h2{
+    font-size: 2.1rem;
+    
+}
+
+
+.modal input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+}
+
+.modal button {
+    background-color: #1fa391;
+    color: white;
+    padding: 0.95rem 7rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Añadido para animación suave */
+
+}
+
+.modal button:hover {
+    background-color: #00615c;
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+}
+
+/* Estilo para el mensaje de error */
+.modal .error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 15px;
+    display: none; /* Se oculta inicialmente */
+}
+
+/* Mostrar el mensaje de error cuando sea necesario */
+.modal .error-message.show {
+    display: block; /* Mostrar cuando se necesita */
+}
+
+
+/* Estilo para el historial de ventas */
+#ventas {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 800px;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: none;
+    overflow-y: auto;
+    height: 500px;  /* Ajusta la altura del contenedor */
+    
+}
+
+#ventas h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #090c31;
+    margin-bottom: 1.5rem;
+}
+
+/* Botón de reiniciar historial */
+.btn-reiniciar {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Botón de reiniciar historial (hover) */
+.btn-reiniciar:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Botón de reiniciar historial (active) */
+.btn-reiniciar:active {
+    background-color: #388e3c;
+    border-color: #388e3c;
+    transform: translateY(1px);
+}
+
+/* Estilo para la tabla de ventas */
+.historial-container {
+    overflow-y: auto;  /* Habilita el scroll vertical */
+    max-height: 400px; /* Limita la altura del contenedor */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #308380;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para el total de la venta */
+.total {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #e6394a;
+}
+
+
+/* Estilo para el menú de navegación */
+nav {
+    position: absolute;  /* Coloca el menú fuera del flujo normal del documento */
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: #2e7a78;  /* Fondo oscuro, combinando con el tema */
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Sombra sutil para dar profundidad */
+    z-index: 1000;  /* Asegura que el menú esté sobre otros elementos */
+}
+
+nav ul {
+    list-style: none;  /* Elimina los puntos de la lista */
+    display: flex;     /* Muestra los elementos de forma horizontal */
+    justify-content: center;  /* Centra los elementos */
+    gap: 30px;         /* Espacio entre los elementos */
+    margin: 0;
+}
+
+nav li {
+    position: relative; /* Necesario para el submenú (si lo agregas más tarde) */
+}
+
+nav a {
+    color: #f1f1f1;  /* Color blanco suave para los enlaces */
+    text-decoration: none;  /* Elimina los subrayados */
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: block;  /* Hace que el enlace sea todo un área clickeable */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #46cb9f;  /* Verde suave al pasar el mouse */
+    color: white;               /* Mantiene el texto en blanco */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+nav a:active {
+    background-color: #45a049;  /* Color ligeramente más oscuro al hacer clic */
+    transform: translateY(1px);  /* Simula una ligera presión al hacer clic */
+}
+
+/* Agrega un efecto de transición suave a todo el menú */
+nav ul li a {
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+
+/* Contenedor del tiempo restante */
+#tiempoRestante {
+    background-color: #3b9f9c; /* Fondo gris oscuro elegante */
+    color: #ecf0f1; /* Texto blanco claro */
+    padding: 12px 20px;
+    border-radius: 6px; /* Bordes redondeados */
+    font-size: 1rem; /* Tamaño de fuente moderado */
+    font-family: 'Roboto', Arial, sans-serif; /* Tipografía profesional */
+    display: inline-block;
+    text-align: center;
+    transition: background-color 0.5s ease-in-out, box-shadow 0.3s ease-in-out; /* Transiciones suaves */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    right: 30px;
+    flex-grow: 1; /* Hace que el contenedor del tiempo restante ocupe más espacio */
+    margin-left: 20px; /* Añadido margen para moverlo más a la derecha */
+}
+
+
+/* Efecto de advertencia cuando el tiempo se acerca al final */
+#tiempoRestante.critical {
+    background-color: #e67e22; /* Naranja suave para advertir */
+    box-shadow: 0 4px 8px rgba(230, 126, 34, 0.4); /* Sombra suave para resaltar */
+    animation: highlight 1s ease-in-out infinite alternate; /* Suave animación de resaltado */
+}
+
+/* Animación suave para llamar la atención */
+@keyframes highlight {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05); /* Ligeramente agrandado */
+    }
+}
+
+/* Mensaje de expiración */
+#tiempoRestante.expired {
+    background-color: #e74c3c; /* Rojo para indicar que ha expirado */
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.5); /* Sombra roja para destacar */
+    font-weight: bold;
+}
+
+/* Botón para descargar historial en PDF */
+#descargarPdfButton {
+    padding: 12px 24px;  /* Espaciado interno */
+    font-size: 16px;     /* Tamaño de la fuente */
+    font-weight: 600;    /* Peso de la fuente (semi-negrita) */
+    color: white;        /* Color del texto */
+    background-color: #e74c3c;  /* Rojo (color principal) */
+    border: 2px solid #e74c3c; /* Borde de 2px con el mismo color */
+    border-radius: 8px;  /* Bordes redondeados */
+    cursor: pointer;    /* Cambia el cursor a pointer */
+    transition: all 0.3s ease-in-out;  /* Transición suave para cambios */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Sombra ligera */
+}
+
+/* Efecto cuando el usuario pasa el cursor sobre el botón */
+#descargarPdfButton:hover {
+    background-color: #c0392b;  /* Rojo oscuro al pasar el mouse */
+    border-color: #c0392b;      /* Cambia el color del borde */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al pasar el cursor */
+    transform: translateY(-2px); /* Hace que el botón "salte" ligeramente */
+}
+.critical {
+    color: red;
+    font-weight: bold;
+    display: none;
+    color: red;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+
+
+
+/* Pantallas más grandes (1200px) */
+@media (max-width: 1200px) {
+    .modal {
+        position: fixed;  /* El modal debe estar fijo sobre el contenido */
+        top: 50%;         /* Centrado vertical */
+        left: 50%;        /* Centrado horizontal */
+        transform: translate(-50%, -50%); /* Ajuste perfecto para el centro */
+        width: 80%;  /* Ajustar el ancho del modal */
+        max-width: 600px;  /* Limitar el ancho máximo */
+        z-index: 1001;  /* Asegura que el modal esté encima del contenido */
+    }
+
+    .modal-content {
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    #ventas {
+        width: 80%;  /* Ajustar el ancho de la sección de ventas */
+        max-width: 800px;  /* Limitar el ancho máximo */
+    }
+
+    table, th, td {
+        font-size: 14px;  /* Reducir tamaño de texto en la tabla */
+    }
+
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: #2e7a78;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;  /* Mantener el nav sobre otros elementos */
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Pantallas más pequeñas (767px) */
+@media (max-width: 767px) {
+    body {
+        flex-direction: column;
+        padding: 1rem 0;
+        position: relative;
+    }
+
+    .modal {
+        position: fixed;  /* El modal debe estar fijo sobre el contenido */
+        top: 60%;         /* Mover el modal más abajo para evitar que se solape con el nav */
+        left: 50%;        /* Centrado horizontal */
+        transform: translate(-50%, -50%); /* Ajuste perfecto para el centro */
+        width: 90%;  /* Hacer el modal más pequeño en pantallas pequeñas */
+        max-width: 500px;  /* Limitar el ancho máximo */
+        padding: 1.5rem;
+        z-index: 1002; 
+    }
+
+    .modal button {
+        padding: 0.8rem 4rem;  /* Ajustar el tamaño del botón */
+    }
+
+    #ventas {
+        width: 100%;
+        height: auto;
+        margin-top: 3rem; /* Desplazar el formulario hacia abajo para que no se superponga con el nav */
+    }
+
+    #tiempoRestante {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 1.5rem;
+    }
+
+    .historial-container {
+        max-height: 300px; /* Limitar la altura del historial */
+    }
+
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        width: 100%;  /* Aseguramos que el nav ocupe el ancho completo */
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0; /* Sin bordes redondeados para pantallas pequeñas */
+        box-shadow: none; /* Eliminamos la sombra en pantallas pequeñas */
+        z-index: 1000; /* Asegura que el nav se mantenga sobre otros elementos */
+    }
+
+    nav ul {
+        display: flex; /* Aseguramos que se mantenga en fila */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+    .critical {
+        font-size: 13px; /* Ajusta el tamaño de la fuente */
+    }
+    .modal button {
+
+        padding: 0.95rem 7rem;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    
+    }
+}
+
+/* Pantallas muy pequeñas (por debajo de 500px) */
+@media (max-width: 500px) {
+    .modal {
+        position: fixed;  /* El modal debe estar fijo sobre el contenido */
+        top: 70%;         /* Mover aún más el modal hacia abajo */
+        left: 50%;        /* Centrado horizontal */
+        transform: translate(-50%, -50%); /* Ajuste perfecto para el centro */
+        width: 90%;  /* Hacer el modal más pequeño en pantallas más pequeñas */
+        max-width: 500px;  /* Limitar el ancho máximo */
+        padding: 1.5rem;
+        z-index: 1002; 
+    }
+
+    #ventas {
+        width: 100%;
+        height: auto;
+        margin-top: 4rem; /* Desplazar aún más el formulario hacia abajo */
+    }
+
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        width: 100%;  /* Aseguramos que el nav ocupe el ancho completo */
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0; /* Sin bordes redondeados para pantallas pequeñas */
+        box-shadow: none; /* Eliminamos la sombra en pantallas pequeñas */
+        z-index: 1000; /* Asegura que el nav se mantenga sobre otros elementos */
+    }
+
+    nav ul {
+        display: flex; /* Aseguramos que se mantenga en fila */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+    .critical {
+        font-size: 12px; /* Ajusta el tamaño de la fuente */
+    }
+
+    .modal button {
+
+        padding: 0.95rem 7rem;
+        border: none;
+ 
+        cursor: pointer;
+        font-size: 1rem;
+    
+    }
+
+
+
+}

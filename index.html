@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Minimarket</title>
+    <link rel="stylesheet" href="inicioStyle.css">
+    
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form" class="login-form">
+        <h2>Iniciar sesión</h2>
+        <div class="input-group">
+            <label for="username"><strong>Usuario</strong></label>
+            <input type="text" id="username" name="username" required placeholder="Escribe tu usuario" />
+        </div>
+        <div class="input-group">
+            <label for="password"><strong>Contraseña</strong></label>
+            <input type="password" id="password" name="password" required placeholder="Escribe tu contraseña" />
+        </div>
+        <button type="submit" class="btn"><strong>Iniciar sesión</strong></button>
+        <p id="error-message" class="error-message"></p>
+        </form>
+    </div>
+
+    
+    <script src="inicioScript.js"></script>
+</body>
+</html>

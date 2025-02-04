@@ -1,0 +1,362 @@
+/* Estilo global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #1a665c;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para el menú de navegación */
+nav {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    background-color: #2e7a78;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #46cb9f;
+    color: white;
+    transform: translateY(-3px);
+}
+
+nav a:active {
+    background-color: #45a049;
+    transform: translateY(1px);
+}
+
+/* Contenedor principal que contiene los formularios y la tabla */
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 1200px;
+    margin-top: 100px; /* Espaciado desde el menú */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Formulario para agregar productos */
+.formulario-container {
+    flex: 1;
+    margin-right: 20px; /* Espacio entre el formulario y la tabla */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 8px;
+}
+
+form input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    padding: 13px;
+    background-color: #179c82;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    font-size: 15.5px;
+}
+
+form button:hover {
+    background-color: #2a896b;
+    transform: scale(1.01);
+   
+}
+
+/* Contenedor para la tabla de inventarios */
+.tabla-container {
+    flex: 2;
+    overflow: hidden;
+}
+
+#tabla-inventario {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Agregamos borde a la caja de la tabla */
+    border-radius: 4px;
+    padding: 10px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+td button {
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 48%; /* Los botones ocupan el 48% de la celda */
+    border: none; /* Elimina el borde de los botones */
+    text-align: center; /* Asegura que el texto esté centrado en el botón */
+    font-size: 0.9rem; /* Reduce ligeramente el tamaño de fuente */
+}
+
+/* Contenedor de los botones Editar y Eliminar */
+table td .acciones {
+    display: flex;
+    justify-content: space-between; /* Separa los botones a los extremos */
+    width: 100%; /* Asegura que los botones ocupen el espacio completo de la celda */
+}
+
+/* Estilo de los botones Editar y Eliminar */
+.editar-btn {
+    background-color: #179c82; /* Verde para Editar */
+    color: white;
+    font-weight: 500; /* Da un peso de fuente ligeramente más fuerte */
+}
+
+.editar-btn:hover {
+    background-color: #2a896b; 
+}
+
+/* Ajuste para el botón Eliminar */
+.eliminar-btn {
+    background-color: #dc3545; /* Rojo para Eliminar */
+    color: white;
+    font-weight: 500; /* Da un peso de fuente ligeramente más fuerte */
+    padding: 5px 20px; /* Aumenta el padding horizontal para hacer el botón más ancho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para los botones en la tabla */
+td button {
+    width: 48%; /* Asegura que ambos botones ocupen el 48% de la celda */
+    padding: 5px 10px;
+    margin: 0; /* Eliminamos margen entre los botones */
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.agotado {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* Media Queries */
+
+/* Para pantallas grandes (1200px y más) */
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 90%;
+        margin-top: 80px; /* Aumenta el margen superior para separar más del nav */
+    }
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        background-color: #2e7a78;
+        padding: 1rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        z-index: 1000;  /* Mantener el nav sobre otros elementos */
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Para pantallas medianas (767px) */
+@media screen and (max-width: 767px) {
+    body {
+        padding: 0.5rem;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 120px;  /* Aumenta el margen superior para evitar que choque con el nav */
+        padding: 10px;
+    }
+
+    .formulario-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    table, th, td {
+        font-size: 0.9rem;
+    }
+
+    td button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    /* Ajuste para botones Editar y Eliminar */
+    .acciones {
+        flex-direction: column;  /* Los botones se apilan verticalmente */
+        gap: 5px;  /* Espacio entre los botones */
+    }
+
+    .editar-btn, .eliminar-btn {
+        width: 100%; /* Los botones ocupan todo el ancho de la celda */
+        font-size: 1rem; /* Aseguramos que el texto del botón se ajuste */
+        padding: 10px 0; /* Espaciado adecuado en los botones */
+    }
+
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        width: 100%;  /* Aseguramos que el nav ocupe el ancho completo */
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0; /* Sin bordes redondeados para pantallas pequeñas */
+        box-shadow: none; /* Eliminamos la sombra en pantallas pequeñas */
+        z-index: 1000; /* Asegura que el nav se mantenga sobre otros elementos */
+    }
+
+    nav ul {
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Para pantallas pequeñas (500px) */
+@media screen and (max-width: 500px) {
+    .container {
+        padding: 5px;
+        margin-top: 120px;  /* Aseguramos que el contenedor no choque con el nav */
+    }
+
+    .formulario-container, .tabla-container {
+        flex: 1 1 100%;
+    }
+
+    /* Agregar margen superior adicional para el formulario */
+    .formulario-container {
+        margin-top: 20px; /* Ajusta este valor según sea necesario */
+    }
+
+    form button {
+        font-size: 14px;
+    }
+
+    table td {
+        font-size: 0.85rem;
+    }
+
+    td button {
+        width: 100%;
+        padding: 8px 0;
+        font-size: 0.85rem;
+        margin: 5px 0; /* Añadimos margen para que no se superpongan */
+    }
+
+    /* Ajuste para botones Editar y Eliminar */
+    .acciones {
+        flex-direction: column;  /* Los botones se apilan verticalmente */
+        gap: 5px;  /* Espacio entre los botones */
+    }
+
+    .editar-btn, .eliminar-btn {
+        width: 100%; /* Los botones ocupan todo el ancho de la celda */
+        font-size: 1rem; /* Aseguramos que el texto del botón se ajuste */
+    }
+
+    nav {
+        position: fixed;  /* El nav debe estar fijo en la parte superior */
+        width: 100%;  /* Aseguramos que el nav ocupe el ancho completo */
+        padding: 1rem;
+        top: 0;
+        left: 0;
+        right: 0;
+        border-radius: 0; /* Sin bordes redondeados para pantallas pequeñas */
+        box-shadow: none; /* Eliminamos la sombra en pantallas pequeñas */
+        z-index: 1000; /* Asegura que el nav se mantenga sobre otros elementos */
+    }
+
+    nav ul {
+        display: flex; /* Aseguramos que se mantenga en fila */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    nav a {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+}
