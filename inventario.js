@@ -4,33 +4,45 @@ const inventarioLista = document.getElementById("inventario-lista");
 let productos = JSON.parse(localStorage.getItem("productos")) || [];
 let productoEditando = null; // Variable para almacenar el producto que estamos editando
 
-// Función para mostrar el inventario
-function mostrarInventario() {
+// Referencia al campo de búsqueda
+const busquedaInput = document.getElementById("busqueda");
+
+// Función para filtrar los productos según la búsqueda
+busquedaInput.addEventListener("input", function(event) {
+    const query = event.target.value.toLowerCase();  // Convertir la búsqueda a minúsculas
+    mostrarInventario(query);  // Llamamos a la función que muestra los productos filtrados
+});
+
+// Modificar la función de mostrarInventario para aceptar un parámetro de búsqueda
+function mostrarInventario(query = "") {
     inventarioLista.innerHTML = "";
-    productos.forEach((producto, index) => {
-        // Calculamos la cantidad restante
-        const cantidadRestante = producto.cantidad - producto.cantidadVendida;
+    productos
+        .filter(producto => {
+            // Filtramos productos que coincidan con la búsqueda (por nombre o código)
+            return producto.nombre.toLowerCase().includes(query) || producto.codigo.toLowerCase().includes(query);
+        })
+        .forEach((producto, index) => {
+            const cantidadRestante = producto.cantidad - producto.cantidadVendida;
+            const cantidadRestanteClass = cantidadRestante <= 3 ? "baja" : "";
 
-        // Si la cantidad restante es menor o igual a 2, asignamos una clase 'baja' para cambiar el color
-        const cantidadRestanteClass = cantidadRestante <= 3 ? "baja" : ""; // Clase para color rojo
-
-        const productoElemento = document.createElement("tr");
-        productoElemento.innerHTML = `
-            <td>${producto.codigo}</td>
-            <td>${producto.nombre}</td>
-            <td>S/${producto.precio.toFixed(2)}</td>
-            <td>${producto.cantidad}</td>
-            <td class="${cantidadRestanteClass}">${cantidadRestante}</td> <!-- Mostramos la cantidad restante -->
-            <td>
-                <div class="acciones">
-                    <button class="editar-btn" onclick="editarProducto(${index})">Editar</button>
-                    <button class="eliminar-btn" onclick="eliminarProducto(${index})">Eliminar</button>
-                </div>
-            </td>
-        `;
-        inventarioLista.appendChild(productoElemento);
-    });
+            const productoElemento = document.createElement("tr");
+            productoElemento.innerHTML = `
+                <td>${producto.codigo}</td>
+                <td>${producto.nombre}</td>
+                <td>S/${producto.precio.toFixed(2)}</td>
+                <td>${producto.cantidad}</td>
+                <td class="${cantidadRestanteClass}">${cantidadRestante}</td>
+                <td>
+                    <div class="acciones">
+                        <button class="editar-btn" onclick="editarProducto(${index})">Editar</button>
+                        <button class="eliminar-btn" onclick="eliminarProducto(${index})">Eliminar</button>
+                    </div>
+                </td>
+            `;
+            inventarioLista.appendChild(productoElemento);
+        });
 }
+
 
 // Función para manejar el formulario de agregar o editar productos
 formulario.addEventListener("submit", function(event) {
