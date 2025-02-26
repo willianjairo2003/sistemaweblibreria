@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minimarket - Sistema de Productos</title>
     <link rel="stylesheet" href="inventario.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -37,6 +38,14 @@
         <!-- Tabla de Inventarios -->
         <div class="tabla-container">
             <h3>Inventario</h3><br>
+            <!-- Campo de búsqueda con icono -->
+            <div class="busqueda-container">
+                <label for="busqueda" style="display: none;">Buscar Producto:</label>
+                <input type="text" id="busqueda" placeholder=" Buscar por nombre o código...">
+                <!-- Icono de búsqueda -->
+                <i class="fas fa-search"></i>
+            </div>
+            
             <div id="tabla-inventario">
                 <table>
                     <thead>
