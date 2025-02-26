@@ -202,6 +202,32 @@ td button {
     color: white;
     font-weight: bold;
 }
+/* Estilos para el contenedor de búsqueda */
+.busqueda-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Estilos para el input de búsqueda */
+.busqueda-container input {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 750px; /* Puedes ajustar este valor para hacerlo más largo */
+    padding-left: 35px; /* Deja espacio a la izquierda para el icono */
+}
+
+/* Estilos para el icono de búsqueda */
+.busqueda-container i {
+    position: absolute;
+    left: 10px; /* Coloca el icono a la izquierda */
+    top: 50%;
+    transform: translateY(-50%); /* Centra el icono verticalmente */
+    font-size: 1.2rem;
+    color: #666; /* Puedes cambiar el color del icono */
+}
 
 
 /* Media Queries */
