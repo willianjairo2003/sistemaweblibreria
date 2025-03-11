@@ -76,10 +76,11 @@ function mostrarCarrito() {
     let total = 0;
     let cantidadTotal = 0; // Variable para almacenar la cantidad total de productos
 
+    // Recorremos los productos del carrito
     carrito.forEach((producto) => {
         const productoElemento = document.createElement("div");
         productoElemento.classList.add("producto");
-        
+
         productoElemento.innerHTML = `
             <span>${producto.nombre}</span> 
             <span>Cantidad: ${producto.cantidad}</span> 
@@ -87,7 +88,8 @@ function mostrarCarrito() {
             <button class="eliminar" data-codigo="${producto.codigo}">X</button>
         `;
 
-        listaProductos.appendChild(productoElemento);
+        // Insertamos el producto al inicio de la lista (hace que los productos nuevos aparezcan primero)
+        listaProductos.insertBefore(productoElemento, listaProductos.firstChild);
 
         total += producto.precio * producto.cantidad;
         cantidadTotal += producto.cantidad; // Sumar la cantidad de cada producto
@@ -238,6 +240,8 @@ botones.forEach(boton => {
                 // Agregar producto generado por la calculadora al carrito y a la lista de productos
                 agregarProductoManual("Producto manual", parseFloat(resultado));
 
+                // Limpiar la pantalla después de agregar el producto
+                pantalla.textContent = "0";  // Restablecer la pantalla a 0
             } catch {
                 pantalla.textContent = "Error!"; // Si hay un error en la operación
             }         
